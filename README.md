@@ -8,3 +8,4 @@ Flask web application to display watering algorithm recommendations for WillowRu
 ```bash
 git clone https://github.com/mgopal64/WaterRec.git
 cd WaterRec
+source env/bin/activate
