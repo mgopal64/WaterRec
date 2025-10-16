@@ -1,12 +1,15 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
 @app.route("/")
 def home():
-    return "<p>Hello, World!</p>"
+    return render_template("home.html")
 
-@app.route("/about")
-def about():
-    return "<p>About</p>"
+@app.route("/data")
+def data():
+    return render_template("data.html")
+
+if __name__ == "__main__":
+    app.run()
