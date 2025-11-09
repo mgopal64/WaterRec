@@ -1,40 +1,36 @@
-from flask import Flask, render_template
-import requests
+from flask import Flask, send_from_directory
 from flask import jsonify
-from dotenv import load_dotenv
-import os
 from utils import receive_data as rd
 from utils import fao_penman as fp
 from utils import threshold as th
 
-load_dotenv()
-api_key = os.getenv("api")
-
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='', static_folder='static')
 app.config['DEBUG'] = True
 
 @app.route("/")
 def home():
-    return render_template("data.html")
+    return app.send_static_file("index.html")
+    # return send_from_directory("static", "index.html")
 
-@app.route("/data")
+@app.route("/pages/data.html")
 def data():
-    return render_template("data.html")
+    return send_from_directory("static", "pages/data.html")
 
-@app.route('/')
+@app.route('/api/weather', methods=['GET'])
 def get_weather():
     try:
         # returns data from weather api
-        data = rd.recieve_data(api_key)
+        data = rd.receive_data()
 
         # FAO Penman-Monteith calculation
         response = fp.fao_penman_debug(data)
 
         # Returns boolean based off of threshold
-        return th.should_water(response)
+        should_water = th.should_water(response)
+        return jsonify(should_water)
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, port=5050)

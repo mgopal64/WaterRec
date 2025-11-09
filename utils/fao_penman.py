@@ -3,7 +3,6 @@ import numpy as np
 def fao_penman_debug(entry, albedo=0.23):
     """
     FAO-56 Penman-Monteith with debug prints of all intermediates.
-    entry: dict from station.get_data()[0]
     """
     # 1. Air temperature (°C)
     T = (entry['tempf'] - 32) * 5/9
@@ -34,7 +33,7 @@ def fao_penman_debug(entry, albedo=0.23):
     # 6. Net radiation Rn (MJ/m²/day)
     Rs_MJ = entry['solarradday'] / 1e6
     Rns = (1 - albedo) * Rs_MJ
-    Rnl = 0 # simplified assumption
+    Rnl = 1 # simplified assumption
     Rn = Rns - Rnl
     print(f"Rs (MJ/m²/day): {Rs_MJ:.4f}")
     print(f"Rns (MJ/m²/day): {Rns:.4f}")

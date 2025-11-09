@@ -10,4 +10,7 @@ def should_water(ET0):
     Returns:
     bool: True if watering is needed, False otherwise.
     """
-    return ET0 >= THRESHOLD
+    if ET0 >= THRESHOLD:
+        return "It's time to water the plants!"
+    else:
+        return "No need to water the plants yet."
