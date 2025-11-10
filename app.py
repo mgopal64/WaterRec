@@ -1,38 +1,47 @@
-from flask import Flask, render_template, send_from_directory, jsonify
-import requests
+from flask import Flask, send_from_directory
+from flask import jsonify
+from utils import receive_data as rd
+from utils import fao_penman as fp
+from utils import threshold as th
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='', static_folder='static')
+app.config['DEBUG'] = True
 
-@app.route('/')
-def index():
-    return send_from_directory('static', 'index.html')
+@app.route("/")
+def home():
+    return app.send_static_file("index.html")
+    # return send_from_directory("static", "index.html")
 
-@app.route('/pages/data.html')
+@app.route("/pages/data.html")
 def data():
-    return send_from_directory('static/pages', 'data.html')
+    return send_from_directory("static", "pages/data.html")
 
-# backend calls weather API 
-@app.route('/api/weather')
+@app.route('/api/weather', methods=['GET'])
 def get_weather():
     try:
-        # Ambient Weather API endpoint
-        url = "https://rt.ambientweather.net/v1/devices"
-        
-        params = {
-            'apiKey': 'eba6cc95d6b849a59125f46c1a49581fa027a00c4643440185efdec6edbddd97',
-            'applicationKey': 'dfdd92b6b41d40debae8600d60428f77bf5a39871ba54381883417df45d6d9ed'
-        }
-        
-        response = requests.get(url, params=params)
-        
-        # Return the JSON response
-        if response.status_code == 200:
-            return jsonify(response.json())
-        else:
-            return jsonify({"error": f"API returned status {response.status_code}"}), response.status_code
-            
+        # returns data from weather api
+        data = rd.receive_data()
+
+        # FAO Penman-Monteith calculation
+        response = fp.fao_penman_debug(data)
+
+        # Returns boolean based off of threshold
+        should_water = th.should_water(response)
+        return jsonify(should_water)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+@app.route('/api/data', methods=['GET'])
+def get_data():
+    try:
+        # returns data from weather api
+        data = rd.receive_data()
+        data["fao_penman"] = fp.fao_penman_debug(data)
+        return data
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5500)
+if __name__ == "__main__":
+    app.run(debug=True, port=5050)
