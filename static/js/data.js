@@ -1,33 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const button = document.getElementById("water-plants");
-    const resultElement = document.getElementById("result");
+    const button = document.getElementById("data");
+    const resultData = document.getElementById("latest_data");
 
     button.addEventListener("click", async () => {
-        resultElement.textContent = "Loading...";
+        resultData.textContent = "Loading...";
 
         try {
             // Make a request to Flask backend
-            const response = await fetch("/api/weather");
+            const getData = await fetch("/api/data");
             
-            if (!response.ok) {
-                throw new Error(`Server error: ${response.status}`);
+            if (!getData.ok) {
+                throw new Error(`Server error: ${getData.status}`);
             }
 
-            const data = await response.json();
+            const data = await getData.json();
+            resultData.textContent = JSON.stringify(data, null, 2)
 
-            // Display the result
-            if (data.result === true) {
-                resultElement.textContent = "✅ It's time to water the plants!";
-            } else if (data.result === false) {
-                resultElement.textContent = "🌿 No need to water right now.";
-            } else if (data.error) {
-                resultElement.textContent = `⚠️ Error: ${data.error}`;
-            } else {
-                resultElement.textContent = `Response: ${JSON.stringify(data)}`;
-            }
         } catch (error) {
             console.error(error);
-            resultElement.textContent = `❌ An error occurred: ${error.message}`;
+            resultData.textContent = `An error occurred: ${error.message}`;
         }
     });
 });

@@ -31,6 +31,17 @@ def get_weather():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route('/api/data', methods=['GET'])
+def get_data():
+    try:
+        # returns data from weather api
+        data = rd.receive_data()
+        data["fao_penman"] = fp.fao_penman_debug(data)
+        return data
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True, port=5050)
