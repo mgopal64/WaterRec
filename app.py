@@ -16,6 +16,10 @@ def home():
 def data():
     return send_from_directory("static", "pages/data.html")
 
+@app.route("/pages/aboutus.html")
+def data():
+    return send_from_directory("static", "pages/aboutus.html")
+
 @app.route('/api/weather', methods=['GET'])
 def get_weather():
     try:
