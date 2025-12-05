@@ -10,7 +10,6 @@ app.config['DEBUG'] = True
 @app.route("/")
 def home():
     return app.send_static_file("index.html")
-    # return send_from_directory("static", "index.html")
 
 @app.route("/pages/data.html")
 def data():
@@ -31,7 +30,7 @@ def get_weather():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-    
+
 @app.route('/api/data', methods=['GET'])
 def get_data():
     try:

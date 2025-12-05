@@ -17,6 +17,6 @@
 
       } catch (error) {
         console.error(error);
-        resultElement.textContent = `❌ An error occurred: ${error.message}`;
+        resultElement.textContent = `An error occurred: ${error.message}`;
       }
     });
