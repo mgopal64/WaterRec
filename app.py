@@ -17,7 +17,7 @@ def data():
     return send_from_directory("static", "pages/data.html")
 
 @app.route("/pages/aboutus.html")
-def data():
+def about():
     return send_from_directory("static", "pages/aboutus.html")
 
 @app.route('/api/weather', methods=['GET'])
