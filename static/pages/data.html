@@ -4,22 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data</title>
+    <link rel="stylesheet" href="../css/data.css">
 </head>
 
 <body>
-    <div>
-        <h2>Latest Data</h2>
-        <br>
-        <a href="/">Home</a>
-        <br> <br>
-        <button id="data">Get Data</button>
-        <p id="latest_data"></p>
-        <p id="raw_data"></p>
-        <p id="ETO"></p>
-    </div>
+    <header>
+        <h1>WRA Local Weather Data</h1>
+        <p>Data from BlueLab Local Weather Station</p>
+        <nav>
+            <a href="/static/index.html">Home</a>
+            <a href="/static/pages/aboutus.html">About Us</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div>
+                <h2>Latest Data</h2>
+                <button id="data">Get Data</button>
+                <p id="latest_data"></p>
+                <p id="raw_data"></p>
+                <p id="ETO"></p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h2> Past Data</h2>
+                <p>Data coming soon...</p>
+            </div>
+        </section>
+    </main>
+
 
     <script src="../js/data.js"></script>
 </body>
 </html>
-
-<link rel="stylesheet" href="../css/data.css">
