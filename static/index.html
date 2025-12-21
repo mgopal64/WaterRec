@@ -5,34 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TC Web App</title>
     <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="../css/home.css">
 </head>
 
 <body>
-    <div><strong><h1>BLUElab Metro Smart Irrigation</h1></strong></div>
-
-    <nav>
-        <div class="nav">
-            <a href="./index.html">Home</a>
-            <a href="./pages/data.html">Data</a>
-            <a href="./pages/aboutus.html">About Us</a>
+    <header>
+        <div class="hero-img">
+            <div class="hero-txt">
+                <h1>Willow Run Acres Smart Irrigation</h1>
+                <p class="Author">Project BlueLab Metro</p>
+                <nav>
+                    <div class="nav">
+                        <a class="navMain" href="./index.html">Home</a>
+                        <a class="navMain" href="./pages/data.html">Data</a>
+                        <a class="navMain" href="./pages/aboutus.html">About Us</a>
+                    </div>
+                </nav>
+            </div>
         </div>
-    </nav>
+    </header>
 
-    <div class="recommended-header">
-        <h2>Recommended Action:</h2>
-    </div>
+    <main>
+        <section>
+            <h2>Plants at WRA!</h2>
+            <div class="plantList">
+                <p>Collard greens</p>
+                <p>Tomatoes</p>
+                <p>Hibiscus</p>
+                <p>Okra</p>
+                <p>Yellow Squash</p>
+                <p>Zucchini</p>
+                <p>Eggplant</p>
+                <p>Shallot Onions</p>
+            </div>
+        </section>
+        <section>
+            <div class="recommended-header">
+                <h2>Reccomendations for WRA:</h2>
+                <p>Calculate irrigation based on the Penman-Monteith equation:</p>
+            </div>
+            <div class="content">
+                <button id="water-plants">Calculate</button>
+            </div>
+            <div id="result"></div>
+            <script src="./js/index.js"></script>
+        </section>
 
-    <div class="content">
-        <button id="water-plants">Calculate</button>
-    </div>
-
-    <div id="result"></div>
-
-    <script src="./js/index.js"></script>
-
-    <img src="./images/BMLogo.png" alt="BlueLab Metro Logo" width="200" height="200">
-
+        <img src="./images/BMLogo.png" alt="BlueLab Metro Logo" width="200" height="180">
+    </main>
 </body>
 </html>
-
-<link rel="stylesheet" href="../css/home.css">
