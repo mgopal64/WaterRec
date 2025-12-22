@@ -21,7 +21,7 @@ main{
 }
 
 .hero-img{
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(/static/images/HomeHero.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(../images/HomeHero.jpg);
   height: 200px;
   background-position: 50% 40%;
   background-repeat: no-repeat;
