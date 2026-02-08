@@ -2,6 +2,8 @@
 
 Flask web application to display watering algorithm recommendations for WillowRunAcres - BLUElab Metro
 
+https://news.engin.umich.edu/2025/09/student-team-brings-irrigation-to-local-farm-in-need/
+
 ## Setup
 
 1. Clone repository
