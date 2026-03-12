@@ -42,3 +42,26 @@ main{
   transform: translate(-50%, -50%);
   color: white;
 }
+
+.map-section {
+  margin-top: 32px;
+}
+
+.map-frame-wrapper {
+  margin-top: 16px;
+  border: 1px solid #c9d4d0;
+  overflow: hidden;
+  background: #dfe9e4;
+}
+
+.gis-map-frame {
+  display: block;
+  width: 100%;
+  min-height: 480px;
+}
+
+@media (max-width: 768px) {
+  .gis-map-frame {
+    min-height: 360px;
+  }
+}
