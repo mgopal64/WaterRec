@@ -11,3 +11,12 @@ https://news.engin.umich.edu/2025/09/student-team-brings-irrigation-to-local-far
 git clone https://github.com/mgopal64/WaterRec.git
 cd WaterRec
 source env/bin/activate
+```
+
+## new website - in progress
+
+vercel hosting url
+https://waterrec-ebon.vercel.app/
+
+github source
+https://github.com/derekfdeans/water_rec_rewrite
